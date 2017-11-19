@@ -20,17 +20,15 @@ public:
     
     int insert(string, int);
     
-    int find(string);
+    int find(string, int, int);
     int findHash(string);
     
-    string locate(string);
+    string locateData(string);
+	string locateHash(string);
     
-    friend bool operator==(const pMT& lhs, const pMT& rhs);
-    
+	//Friend functions
+	friend bool operator==(const pMT& lhs, const pMT& rhs);
     friend bool operator!=(const pMT& lhs, const pMT& rhs);
-    
     friend pMT operator^(const pMT& lhs, const pMT& rhs);
     friend std::ostream& operator<<(std::ostream& out, const pMT& p);
-    
 };
-
