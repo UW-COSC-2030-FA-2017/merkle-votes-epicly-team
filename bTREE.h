@@ -33,10 +33,11 @@ public:
     
 	void destroyTree(treeNode* &subTree);
 
+	//Friend functions
+	/*
     friend bool operator ==(const bTREE& lhs, const bTREE& rhs);
     friend bool operator!=(const bTREE& lhs, const bTREE& rhs);
-
     friend std::ostream& operator<<(std::ostream& out, const bTREE& p);
-    
+    */
 };
 

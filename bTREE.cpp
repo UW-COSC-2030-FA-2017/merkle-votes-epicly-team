@@ -37,7 +37,7 @@ int bTREE::numberOfNodes(const treeNode* subTree)
 	else
 	{
 		return (1 + (numberOfNodes(subTree->left)
-			+ numberOfNodes(subTree->right)));
+				  + (numberOfNodes(subTree->right))));
 	}
 }
 
@@ -62,12 +62,34 @@ int bTREE::insert(treeNode* subTree, string data, int timeStamp)
 
 int bTREE::find(const treeNode* subTree, string key)
 {
+	if (subTree->data == key || subTree == NULL)
+	{
+		return subTree->timeStamp;
+	}
+	if (key > subTree->data)
+	{
+		//Recurse
+		return find(subTree->left, key);
+	}
 }
 
 string bTREE::locate(const treeNode* subTree, string key)
 {
+	if (subTree->data == key || subTree == NULL)
+	{
+		return subTree->data;
+	}
+	if (key > subTree->data)
+	{
+		//Recurse
+		return locate(subTree->left, key);
+	}
+	//Another recursive call
+	return locate(subTree->left, key);
 }
 
+//Friend functions
+/*
 bool bTREE::operator==(const bTREE& lhs, const bTREE& rhs)
 {
 }
@@ -79,3 +101,4 @@ bool bTREE::operator!=(const bTREE& lhs, const bTREE& rhs)
 std::ostream& bTREE::operator<<(std::ostream& out, const bTREE& p)
 {
 }
+*/
