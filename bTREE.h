@@ -6,7 +6,7 @@ class bTREE
 {
     struct treeNode{
         string data;
-        int time;
+        int timeStamp;
 		treeNode *left;
 		treeNode *right;
 		bool isLeaf();
@@ -16,21 +16,22 @@ private:
     //some data structure to hold your treeNodes together ...
     //DATASTUCTURE treeNodes tree;
     //any helper private variables you need
-	treeNode *tree_;
+	treeNode *tree;
     
 public:
     bTREE();
     ~bTREE();
     
     int dataInserted();
-    int numberOfNodes();
+    int numberOfNodes(const treeNode* subtree);
     
-    void insert(string, int);
+    int insert(treeNode* subTree, string data, int timeStamp);
     
-    bool find(string);
+    int find(const treeNode* subTree, string key);
     
-    string locate(string);
+    string locate(const treeNode* subTree, string key);
     
+	void destroyTree(treeNode* &subTree);
 
     friend bool operator ==(const bTREE& lhs, const bTREE& rhs);
     friend bool operator!=(const bTREE& lhs, const bTREE& rhs);

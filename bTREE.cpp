@@ -3,72 +3,79 @@
 
 //look at descriptions in pMT.h for guidance on what you might need for these function to actually do
 bTREE::bTREE()
+	:tree(NULL)
 {
-	new bTREE;
 }
 
 bTREE::~bTREE()
 {
+	destroyTree(tree);
+}
 
+void bTREE::destroyTree(treeNode* &subTree)
+{
+	if (subTree != NULL)
+	{
+		destroyTree(subTree->right);
+		destroyTree(subTree->left);
+		delete subTree;
+		subTree = NULL;
+	}
 }
 
 int bTREE::dataInserted()
 {
+	return 1;
 }
 
-int bTREE::numberOfNodes()
+int bTREE::numberOfNodes(const treeNode* subTree)
 {
-}
-
-//Function to test if a node is a leaf
-bool bTREE::isLeaf(treeNode* node)
-{
-}
-
-void bTREE::insert(string data, int time)
-{
-	if (key < leaf->key_value)
+	if (subTree == NULL)
 	{
-		if (leaf->left != NULL)
-			insert(key, leaf->left);
-		else
-		{
-			leaf->left = new treeNode;
-			leaf->left->key_value = key;
-			leaf->left->left = NULL;    //Sets the left child of the child node to null
-			leaf->left->right = NULL;   //Sets the right child of the child node to null
-		}
+		return 0;
 	}
-	else if (key >= leaf->key_value)
+	else
 	{
-		if (leaf->right != NULL)
-			insert(key, leaf->right);
-		else
-		{
-			leaf->right = new treeNode;
-			leaf->right->key_value = key;
-			leaf->right->left = NULL;  //Sets the left child of the child node to null
-			leaf->right->right = NULL; //Sets the right child of the child node to null
-		}
+		return (1 + (numberOfNodes(subTree->left)
+			+ numberOfNodes(subTree->right)));
 	}
 }
 
-bool bTREE::find(string)
+int bTREE::insert(treeNode* subTree, string data, int timeStamp)
+{
+	if (subTree == NULL)
+	{
+		//New node
+		subTree->timeStamp = timeStamp;
+		subTree->data = data;
+	}
+	if (data < subTree->data)
+	{
+		return insert(subTree->left,data,timeStamp);
+	}
+	else if (subTree->data < data)
+	{
+		return insert(subTree->right,data,timeStamp);
+	}
+	return subTree->timeStamp;
+}
+
+int bTREE::find(const treeNode* subTree, string key)
 {
 }
 
-string bTREE::locate(string)
+string bTREE::locate(const treeNode* subTree, string key)
 {
 }
 
-friend bool bTREE::operator ==(const bTREE& lhs, const bTREE& rhs)
+bool bTREE::operator==(const bTREE& lhs, const bTREE& rhs)
 {
 }
 
-friend bool bTREE::operator !=(const bTREE& lhs, const bTREE& rhs)
+bool bTREE::operator!=(const bTREE& lhs, const bTREE& rhs)
 {
 }
 
-friend std::ostream& bTREE::operator <<(std::ostream& out, const bTREE& p)
+std::ostream& bTREE::operator<<(std::ostream& out, const bTREE& p)
 {
 }
