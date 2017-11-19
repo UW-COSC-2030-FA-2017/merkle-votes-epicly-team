@@ -9,15 +9,14 @@ class bTREE
         int time;
 		treeNode *left;
 		treeNode *right;
+		bool isLeaf();
     };
     
 private:
     //some data structure to hold your treeNodes together ...
     //DATASTUCTURE treeNodes tree;
     //any helper private variables you need
-	struct treeNode tree{
-
-	};
+	treeNode *tree_;
     
 public:
     bTREE();
@@ -32,10 +31,6 @@ public:
     
     string locate(string);
     
-	treeNode *root;
-
-	//Function to test if a node is a leaf
-	bool isLeaf(treeNode* node);
 
     friend bool operator ==(const bTREE& lhs, const bTREE& rhs);
     friend bool operator!=(const bTREE& lhs, const bTREE& rhs);
