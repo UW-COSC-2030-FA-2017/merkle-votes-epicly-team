@@ -3,8 +3,10 @@
 
 //look at descriptions in pMT.h for guidance on what you might need for these function to actually do
 bTREE::bTREE()
-	:tree(NULL)
 {
+	root = NULL;
+	treeHeight = 0;
+	nodeX = 0;
 }
 
 bTREE::~bTREE()

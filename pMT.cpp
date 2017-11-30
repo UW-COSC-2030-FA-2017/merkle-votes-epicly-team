@@ -8,6 +8,13 @@ pMT::pMT(int hashSelect)
  * @return 
  */
 {
+	if (hashSelect >= 1 && hashSelect <= 3) {
+		selectedHash = hashSelect;
+	}
+	else {
+		//If invalid input, default to 1
+		selectedHash = 1;
+	}
 }
 
 pMT::~pMT()
@@ -26,6 +33,13 @@ int pMT::insert(string vote, int time)
  * @return the number of operations needed to do the insert, -1 if out of memory
  */
 {
+	bTREE::treeNode* tree2 = new bTREE::treeNode();
+	bTREE::treeNode* temp = myMerkle.getTree();
+	tree2->leaf = true;
+	tree2->time = time;
+	tree2->data = vote;
+	myMerkle.setTree(insert2(temp, tree2));
+	return 1;
 }
 
 int pMT::find(string vote, int time, int hashSelect)
@@ -66,6 +80,7 @@ string pMT::locateHash(string mhash)
  * @return sequence of L's and R's comprising the movement to the hash node, ; else return a dot '.'
  */
 {
+	return myMerkle.locate(myMerkle.root, mhash);
 }
 
 
@@ -131,56 +146,57 @@ string pMT::hash_3(string key)
 	return to_string(hash);
 }
 
-friend bool pMT::operator ==(const pMT& lhs, const pMT& rhs)
-/**
- * @brief Comparison between two merkle trees
- * @param lhs, the left hand side of the equality statment
- * @param rhs, the right hand side of the equality statement
- * @return true if equal, false otherwise
- */
-{
-}
 
-friend bool pMT::operator !=(const pMT& lhs, const pMT& rhs)
-/**
- * @brief Comparison between two merkle trees
- * @param lhs, the left hand side of the equality statment
- * @param rhs, the right hand side of the equality statement
- * @return true if not equal, false otherwise
- */
-{
-    
-}
+//friend bool pMT::operator ==(const pMT& lhs, const pMT& rhs)
+///**
+// * @brief Comparison between two merkle trees
+// * @param lhs, the left hand side of the equality statment
+// * @param rhs, the right hand side of the equality statement
+// * @return true if equal, false otherwise
+// */
+//{
+//}
+//
+//friend bool pMT::operator !=(const pMT& lhs, const pMT& rhs)
+///**
+// * @brief Comparison between two merkle trees
+// * @param lhs, the left hand side of the equality statment
+// * @param rhs, the right hand side of the equality statement
+// * @return true if not equal, false otherwise
+// */
+//{
+//    
+//}
+//
+//friend pMT pMT::operator ^=(const pMT& lhs, const pMT& rhs)
+///**
+// * @brief XOR between two merkle trees
+// * @param lhs, the left hand side of the equality statment
+// * @param rhs, the right hand side of the equality statement
+// * @return true if not equal, false otherwise
+// */
+//{
+//    
+//}
+//
+//
+//friend std::ostream& pMT::operator <<(std::ostream& out, const pMT& p)
+///**
+// * @brief Print out a tree
+// * @param out
+// * @param p
+// * @return a tree to the screen
+// */
+//{
+//}
 
-friend pMT pMT::operator ^=(const pMT& lhs, const pMT& rhs)
-/**
- * @brief XOR between two merkle trees
- * @param lhs, the left hand side of the equality statment
- * @param rhs, the right hand side of the equality statement
- * @return true if not equal, false otherwise
- */
-{
-    
-}
 
-
-friend std::ostream& pMT::operator <<(std::ostream& out, const pMT& p)
-/**
- * @brief Print out a tree
- * @param out
- * @param p
- * @return a tree to the screen
- */
-{
-}
-
-
-friend pMT pMT::operator ^(const pMT& lhs, const pMT& rhs)
-/**
- * @brief Where do two trees differ
- * @param lhs
- * @param rhs
- * @return a tree comprised of the right hand side tree nodes that are different from the left
- */
-{
-}
+//friend pMT pMT::operator ^(const pMT& lhs, const pMT& rhs)
+///**
+// * @brief Where do two trees differ
+// * @param lhs
+// * @param rhs
+// * @return a tree comprised of the right hand side tree nodes that are different from the left
+// */
+//{
+//}
