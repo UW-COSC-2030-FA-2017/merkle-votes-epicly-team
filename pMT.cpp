@@ -69,7 +69,7 @@ string pMT::locateHash(string mhash)
 }
 
 
-
+//RS Hash
 string pMT::hash_1(string key)
 /**
  * @brief A function that takes in a key and returns a hash of that key using some custom function
@@ -77,8 +77,21 @@ string pMT::hash_1(string key)
  * @return a hash of the key
  */
 {
+	unsigned int b = 378551;
+	unsigned int a = 63689;
+	unsigned int hash = 0;
+
+	for (std::size_t i = 0; i < key.length(); i++)
+	{
+		hash = hash * a + key[i];
+		a = a * b;
+	}
+
+	return to_string(hash);
 }
 
+
+//BKDR Hash
 string pMT::hash_2(string key)
 /**
  * @brief A function that takes in a key and returns a hash of that key using some custom function
@@ -86,8 +99,18 @@ string pMT::hash_2(string key)
  * @return a hash of the key
  */
 {
+	unsigned int seed = 131; // 31 131 1313 13131 131313 etc..
+	unsigned int hash = 0;
+
+	for (std::size_t i = 0; i < key.length(); i++)
+	{
+		hash = (hash * seed) + key[i];
+	}
+
+	return to_string(hash);
 }
 
+//Weak Hash
 string pMT::hash_3(string key)
 /**
  * @brief A function that takes in a key and returns a hash of that key using some custom function
@@ -95,6 +118,17 @@ string pMT::hash_3(string key)
  * @return a hash of the key
  */
 {
+	unsigned int b = 3751;
+	unsigned int a = 689;
+	unsigned int hash = 0;
+
+	for (std::size_t i = key.length() - 4; i < key.length() - 1; i++)
+	{
+		hash = hash * a + key[i];
+		a = a * b;
+	}
+	//Convert hash to string
+	return to_string(hash);
 }
 
 friend bool pMT::operator ==(const pMT& lhs, const pMT& rhs)
