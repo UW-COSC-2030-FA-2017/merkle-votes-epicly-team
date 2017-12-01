@@ -64,7 +64,16 @@ int pMT::find(string vote, int time, int hashSelect)
  * @return 0 if not found, else number of opperations required to find the matching vote
  */
 {
-	return -1;
+	int numOps = 0;
+	if (1 == (find(vote, time, selectedHash)))
+	{
+		numOps++;
+		return numOps;
+	}
+	else
+	{
+		return numOps;
+	}
 }
 
 int pMT::findHash(string mhash)
@@ -74,7 +83,17 @@ int pMT::findHash(string mhash)
  * @return 0 if not found, else number of opperations required to find the matching hash
  */
 {
-	return -1;
+	int numOps = 0;
+	if (0 != myMerkle.numNodes(myMerkle.tree))
+	{
+		numOps++;
+		myMerkle.locate(myMerkle.tree, mhash);
+		return numOps;
+	}
+	else
+	{
+		return numOps;
+	}
 }
 
 

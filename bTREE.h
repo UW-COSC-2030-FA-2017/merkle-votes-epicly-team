@@ -9,7 +9,6 @@ class bTREE
         int timeStamp;
 		treeNode *left;
 		treeNode *right;
-		bool isLeaf();
     };
     
 private:
@@ -29,7 +28,7 @@ public:
 	treeNode *bottomLeaf;
     
     int dataInserted();
-    int numberOfNodes(const treeNode* subtree);
+    int numNodes(const treeNode* subtree);
     
     int insert(treeNode* subTree, string data, int timeStamp);
 

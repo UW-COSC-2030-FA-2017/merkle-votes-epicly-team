@@ -46,7 +46,7 @@ int bTREE::countLeaves(treeNode* tree)
 	}
 }
 
-int bTREE::numberOfNodes(const treeNode* subTree)
+int bTREE::numNodes(const treeNode* subTree)
 {
 	if (subTree == NULL)
 	{
@@ -54,8 +54,8 @@ int bTREE::numberOfNodes(const treeNode* subTree)
 	}
 	else
 	{
-		return (1 + (numberOfNodes(subTree->left)
-				  + (numberOfNodes(subTree->right))));
+		return (1 + (numNodes(subTree->left)
+				  + (numNodes(subTree->right))));
 	}
 }
 
