@@ -4,7 +4,7 @@
 #include "pMT.h"
 using namespace std;
 
-
+/*
 void readFile(string fileName)
 {
 	string line;
@@ -18,9 +18,29 @@ void readFile(string fileName)
 		cout << "ERROR: Unable to open file" << endl;
 	}
 }
+*/
 
+void readFile(string fileName)
+{
 
-int main(int argc, char **argv)
+	std::fstream in("mv_test.txt");
+
+	if (!in) {
+		cout << "Unable to open file";
+	}
+
+	char test[255];
+	string line;
+	char delimeter(':');
+	while (in) {
+		in.getline(test, 255, delimeter);
+
+		cout << test << endl;
+	}
+	in.close();
+}
+
+int main()
 {
 
 	system("pause");
