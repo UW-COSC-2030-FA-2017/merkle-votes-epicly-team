@@ -8,9 +8,16 @@ using namespace std;
 void readFile(string fileName)
 {
 	string line;
-	ifstream myfile(fileName);
+	ifstream myfile;
+	myfile.open(fileName);
 	if (myfile.is_open())
 	{
+		//cout << "Successfully opened " << fileName << '\n';
+
+		while (getline(myfile, line))
+		{
+			cout << line << '\n';
+		}
 		myfile.close();
 	}
 	else
