@@ -7,7 +7,6 @@ using namespace std;
 class pMT
 {
 private:
-    int selectedHash;
     bTREE myMerkle;
     
     string hash_1(string);
@@ -18,6 +17,8 @@ public:
     pMT(int);
     ~pMT();
     
+	int selectedHash;
+
     int insert(string, int);
     
     int find(string, int, int);
