@@ -2,6 +2,7 @@
 
 #include "bTREE.h"
 #include <string>
+
 using namespace std;
 class pMT
 {
@@ -27,8 +28,8 @@ public:
 	string locateHash(string);
     
 	//Friend functions
-	//friend bool operator==(const pMT& lhs, const pMT& rhs);
- //   friend bool operator!=(const pMT& lhs, const pMT& rhs);
- //   friend pMT operator^(const pMT& lhs, const pMT& rhs);
- //   friend std::ostream& operator<<(std::ostream& out, const pMT& p);
+	friend bool operator ==(const pMT& lhs, const pMT& rhs);
+    friend bool operator!=(const pMT& lhs, const pMT& rhs);
+    friend pMT operator^(const pMT& lhs, const pMT& rhs);
+    friend std::ostream& operator<<(std::ostream& out, const pMT& p);
 };

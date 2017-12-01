@@ -8,6 +8,7 @@ pMT::pMT(int hashSelect)
  * @return 
  */
 {
+	bTREE newTree;
 	if (hashSelect >= 1 && hashSelect <= 3) {
 		selectedHash = hashSelect;
 	}
@@ -29,17 +30,27 @@ int pMT::insert(string vote, int time)
 /**
  * @brief insert a vote and time into a leaf node of tree
  * @param vote - a string
- * @param time - an int representing the time 
+ * @param time - an int representing the time
  * @return the number of operations needed to do the insert, -1 if out of memory
  */
 {
-	bTREE::treeNode* tree2 = new bTREE::treeNode();
-	bTREE::treeNode* temp = myMerkle.getTree();
-	tree2->leaf = true;
-	tree2->time = time;
-	tree2->data = vote;
-	myMerkle.setTree(insert2(temp, tree2));
-	return 1;
+	switch (selectedHash)
+	{
+	case 1:
+		myMerkle.insert(hash_1(vote), time);
+		break;
+	case 2:
+		myMerkle.insert(hash_2(vote), time);
+		break;
+	case 3:
+		myMerkle.insert(hash_3(vote), time);
+		break;
+	}
+
+	if (myMerkle.numberOfNodes() > 2)
+		//rehash(myMerkle);
+
+		return myMerkle.dataInserted();
 }
 
 int pMT::find(string vote, int time, int hashSelect)
@@ -147,27 +158,42 @@ string pMT::hash_3(string key)
 }
 
 
-//friend bool pMT::operator ==(const pMT& lhs, const pMT& rhs)
-///**
-// * @brief Comparison between two merkle trees
-// * @param lhs, the left hand side of the equality statment
-// * @param rhs, the right hand side of the equality statement
-// * @return true if equal, false otherwise
-// */
-//{
-//}
-//
-//friend bool pMT::operator !=(const pMT& lhs, const pMT& rhs)
-///**
-// * @brief Comparison between two merkle trees
-// * @param lhs, the left hand side of the equality statment
-// * @param rhs, the right hand side of the equality statement
-// * @return true if not equal, false otherwise
-// */
-//{
-//    
-//}
-//
+bool pMT::operator ==(const pMT& lhs, const pMT& rhs)
+/**
+ * @brief Comparison between two merkle trees
+ * @param lhs, the left hand side of the equality statment
+ * @param rhs, the right hand side of the equality statement
+ * @return true if equal, false otherwise
+ */
+{
+	if (rhs == lhs)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool pMT::operator !=(const pMT& lhs, const pMT& rhs)
+/**
+ * @brief Comparison between two merkle trees
+ * @param lhs, the left hand side of the equality statment
+ * @param rhs, the right hand side of the equality statement
+ * @return true if not equal, false otherwise
+ */
+{
+	if (rhs != lhs)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 //friend pMT pMT::operator ^=(const pMT& lhs, const pMT& rhs)
 ///**
 // * @brief XOR between two merkle trees
