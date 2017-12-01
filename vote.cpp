@@ -4,7 +4,7 @@
 #include "pMT.h"
 using namespace std;
 
-/*
+
 void readFile(string fileName)
 {
 	string line;
@@ -18,11 +18,11 @@ void readFile(string fileName)
 		cout << "ERROR: Unable to open file" << endl;
 	}
 }
-*/
 
+
+/*
 void readFile(string fileName)
 {
-
 	std::fstream in("mv_test.txt");
 
 	if (!in) {
@@ -39,9 +39,11 @@ void readFile(string fileName)
 	}
 	in.close();
 }
+*/
 
-int main()
+int main(int argc, char **argv)
 {
+	readFile("mv_test.txt");
 
 	system("pause");
 	return 0;
