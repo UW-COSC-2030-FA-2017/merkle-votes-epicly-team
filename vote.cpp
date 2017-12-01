@@ -5,25 +5,16 @@
 using namespace std;
 
 
-void readFile(string fileName)
+void readFile()
 {
 	string line;
-	ifstream myfile;
-	myfile.open(fileName);
-	if (myfile.is_open())
+	char delimeter(':');
+	ifstream myfile("mv_test.txt");
+	while (getline(myfile, line))
 	{
-		//cout << "Successfully opened " << fileName << '\n';
-
-		while (getline(myfile, line))
-		{
-			cout << line << '\n';
-		}
-		myfile.close();
+		cout << line << '\n';
 	}
-	else
-	{
-		cout << "ERROR: Unable to open file" << endl;
-	}
+	myfile.close();
 }
 
 
@@ -50,7 +41,6 @@ void readFile(string fileName)
 
 int main(int argc, char **argv)
 {
-	readFile("mv_test.txt");
 
 	system("pause");
 	return 0;
