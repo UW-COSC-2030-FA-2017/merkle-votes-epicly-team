@@ -34,7 +34,25 @@ int pMT::insert(string vote, int time)
  * @return the number of operations needed to do the insert, -1 if out of memory
  */
 {
-	return -1;
+	if (selectedHash == 1)
+	{
+		myMerkle.insert(myMerkle.tree, hash_1(vote), time);
+		return 1;
+	}
+	else if (selectedHash == 2)
+	{
+		myMerkle.insert(myMerkle.tree, hash_2(vote), time);
+		return 1;
+	}
+	else if (selectedHash == 3)
+	{
+		myMerkle.insert(myMerkle.tree, hash_3(vote), time);
+		return 1;
+	}
+	else
+	{
+		return -1;
+	}
 }
 
 int pMT::find(string vote, int time, int hashSelect)
@@ -98,7 +116,7 @@ string pMT::hash_1(string key)
 		hash = hash * a + key[i];
 		a = a * b;
 	}
-
+	//convert hash to string
 	return to_string(hash);
 }
 
@@ -111,14 +129,14 @@ string pMT::hash_2(string key)
  * @return a hash of the key
  */
 {
-	unsigned int seed = 131; // 31 131 1313 13131 131313 etc..
+	unsigned int seed = 131;
 	unsigned int hash = 0;
 
 	for (std::size_t i = 0; i < key.length(); i++)
 	{
 		hash = (hash * seed) + key[i];
 	}
-
+	//Convert hash to string
 	return to_string(hash);
 }
 
@@ -143,6 +161,14 @@ string pMT::hash_3(string key)
 	return to_string(hash);
 }
 
+
+/*
+		* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		* Please note that we tried to do some of these friend functions, but	*
+		* Visual Studio was giving us a hard time about it, so we left them		*
+		* alone.																*
+		* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*/
 
 //bool pMT::operator ==(const pMT& lhs, const pMT& rhs)
 ///**

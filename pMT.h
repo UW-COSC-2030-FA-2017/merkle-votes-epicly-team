@@ -18,7 +18,6 @@ public:
     pMT(int);
     ~pMT();
     
-    
     int insert(string, int);
     
     int find(string, int, int);
@@ -29,7 +28,7 @@ public:
     
 	//Friend functions
 	//friend bool operator ==(const pMT& lhs, const pMT& rhs);
- //   friend bool operator!=(const pMT& lhs, const pMT& rhs);
- //   friend pMT operator^(const pMT& lhs, const pMT& rhs);
- //   friend std::ostream& operator<<(std::ostream& out, const pMT& p);
+	//friend bool operator!=(const pMT& lhs, const pMT& rhs);
+	//friend pMT operator^(const pMT& lhs, const pMT& rhs);
+	//friend std::ostream& operator<<(std::ostream& out, const pMT& p);
 };
