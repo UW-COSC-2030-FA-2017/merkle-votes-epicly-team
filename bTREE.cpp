@@ -4,9 +4,8 @@
 //look at descriptions in pMT.h for guidance on what you might need for these function to actually do
 bTREE::bTREE()
 {
-	root = NULL;
 	treeHeight = 0;
-	nodeX = 0;
+	tree = NULL;
 }
 
 bTREE::~bTREE()
@@ -27,7 +26,24 @@ void bTREE::destroyTree(treeNode* &subTree)
 
 int bTREE::dataInserted()
 {
-	return 1;
+	return countLeaves(tree);
+}
+
+int bTREE::countLeaves(treeNode* tree)
+{
+	if (tree == NULL)
+	{
+		return 0;
+	}
+	else if ((tree->left == NULL) && (tree->right == NULL))
+	{
+		return 1;
+	}
+	else
+	{
+		leafCount = countLeaves(tree->left) + countLeaves(tree->right);
+		return leafCount;
+	}
 }
 
 int bTREE::numberOfNodes(const treeNode* subTree)
@@ -68,10 +84,13 @@ int bTREE::find(const treeNode* subTree, string key)
 	{
 		return subTree->timeStamp;
 	}
-	if (key > subTree->data)
+	else if (key > subTree->data)
 	{
-		//Recurse
 		return find(subTree->left, key);
+	}
+	else
+	{
+		return 0;
 	}
 }
 
