@@ -26,6 +26,7 @@ public:
 
 	treeNode *tree;
 	treeNode *root;
+	treeNode *bottomLeaf;
     
     int dataInserted();
     int numberOfNodes(const treeNode* subtree);
@@ -47,4 +48,3 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const bTREE& p);
     */
 };
-

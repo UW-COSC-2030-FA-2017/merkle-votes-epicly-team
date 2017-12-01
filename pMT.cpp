@@ -85,7 +85,8 @@ string pMT::locateData(string vote)
  * @return sequence of L's and R's comprising the movement to the leaf node; else return a dot '.'
  */
 {
-	return "Boi...";
+
+	return myMerkle.locate(myMerkle.tree, vote);
 }
 
 string pMT::locateHash(string mhash)

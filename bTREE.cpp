@@ -63,7 +63,6 @@ int bTREE::insert(treeNode* subTree, string data, int timeStamp)
 {
 	if (subTree == NULL)
 	{
-		//New node
 		subTree->timeStamp = timeStamp;
 		subTree->data = data;
 	}
@@ -102,10 +101,8 @@ string bTREE::locate(const treeNode* subTree, string key)
 	}
 	if (key > subTree->data)
 	{
-		//Recurse
 		return locate(subTree->left, key);
 	}
-	//Another recursive call
 	return locate(subTree->left, key);
 }
 
