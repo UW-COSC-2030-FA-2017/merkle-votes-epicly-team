@@ -37,7 +37,42 @@ int main(int argc, char **argv)
 			cout << vote;
 			time = time + 1;
 			merkleTree.insert(vote, time);
+
+			if (hashCall == 1)
+			{
+				merkleTree.find(vote, time, 1);
+
+			}
+			else if (hashCall == 2)
+			{
+				merkleTree.find(vote, time, 2);
+			}
+			else
+			{
+				merkleTree.find(vote, time, 3);
+			}
 		}
+
+		//Test other functions
+		merkleTree.locateData(vote);
+
+		if (hashCall == 1)
+		{
+			merkleTree.locateHash(merkleTree.hash_1(vote));
+			merkleTree.findHash(merkleTree.hash_1(vote));
+
+		}
+		else if (hashCall == 2)
+		{
+			merkleTree.locateHash(merkleTree.hash_2(vote));
+			merkleTree.findHash(merkleTree.hash_2(vote));
+		}
+		else
+		{
+			merkleTree.locateHash(merkleTree.hash_3(vote));
+			merkleTree.findHash(merkleTree.hash_3(vote));
+		}
+
 		in.close();
 	}
 

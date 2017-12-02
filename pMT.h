@@ -9,14 +9,14 @@ class pMT
 private:
     bTREE myMerkle;
     
-    string hash_1(string);
-    string hash_2(string);
-    string hash_3(string);
-    
 public:
     pMT(int);
     ~pMT();
     
+	string hash_1(string);
+	string hash_2(string);
+	string hash_3(string);
+
 	int selectedHash;
 
     int insert(string, int);
