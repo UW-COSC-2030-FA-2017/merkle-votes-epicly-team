@@ -16,8 +16,8 @@ int main(int argc, char **argv)
 	cin >> hashCall;
 	cout << '\n';
 
-	//Create new tree
-	pMT *merkleTree = new pMT(hashCall);
+	//Create new tree with hash
+	pMT merkleTree = pMT(hashCall);
 
 	//Read file
 	std::fstream in("mv_test.txt");
@@ -27,16 +27,16 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		char test[255];
 		string vote;
-		string time;
+		int time;
+		int i = 0;
 		char delimeter('\t');
-		while (in) {
-			in.getline(test, 255, delimeter);
-
-			cout << test << endl;
-			time = vote.substr(vote.find('\t') + 1);
-			cout << time;
+		while (in)
+		{
+			getline(in, vote, delimeter);
+			cout << vote;
+			time = time + 1;
+			merkleTree.insert(vote, time);
 		}
 		in.close();
 	}
